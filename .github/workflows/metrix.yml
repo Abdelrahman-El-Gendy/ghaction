@@ -1,0 +1,20 @@
+name: Metrix-strategy
+
+on: 
+    workflow_dispatch:
+
+jobs:
+    job_1:
+      strategy:
+          fail-fast: false
+          max-parallel: 3
+          matrix:
+            os: [ubunto-latest,windows-latest,macos-latest]
+            node-versions: [14.x,15.x,16.x]
+      runs-on: ${{matrix.os}}
+      steps:
+        - uses: actions/setup-node@v3.6.0
+          with:
+            node-versions: ${{matrix.node-versions}}
+          
+          
